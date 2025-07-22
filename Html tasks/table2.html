@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <title>Table 2</title>
+
+  <style>
+    
+    @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+    /* Reset default spacing and box-sizing */
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+
+    /* Body styles for layout and font */
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 70px;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #ffffff;
+      padding: 30px;
+    }
+
+    /* Figure elements to group images and captions */
+    figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Styling for captions */
+    .caption {
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+      font-weight: 800;
+      margin-top: 25px;
+    }
+
+    /* Image responsiveness */
+    img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      display: block;
+    }
+
+    /* Horizontal scroll wrapper for table */
+    .table-scroll {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: auto;
+    }
+
+    /* Table layout */
+    table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      min-width: 800px;
+    }
+
+    /* Cell and header base styling */
+    td {
+      height: 50px;
+      padding: 0 15px;
+    }
+    th {
+      text-align: left;
+      font-size: 20px;
+    }
+
+    /* Column-specific widths */
+    td:nth-child(1) {
+      padding: 0;
+      max-width: 10px;
+      min-width: 10px;
+    }
+    td:nth-child(2) {
+      width: 200px;
+    }
+    td:nth-child(3) {
+      width: 100px;
+    }
+
+    /* Data columns header */
+    th:nth-child(4),
+    th:nth-child(6),
+    th:nth-child(8) {
+      border-bottom: 3px solid #dadada;
+      width: 260px;
+    }
+
+    /* Columns between data columns*/
+    th:nth-child(5),
+    th:nth-child(7),
+    th:nth-child(9) {
+      width: 25px;
+    }
+
+    /* Styling for year values */
+    td:nth-child(4),
+    td:nth-child(6),
+    td:nth-child(8) {
+      font-size: 20px;
+      text-align: center;
+      background-color: #f3f3f3;
+      color: black;
+      font-weight: 700;
+      padding: 0 60px;
+      white-space: nowrap;
+    }
+
+    /* Rounded left border for group names */
+    td:nth-child(2) {
+      border-radius: 10px 0 0 10px;
+      font-weight: 800;
+      color: white;
+    }
+
+    /* Rounded right border for end of row */
+    td:last-child {
+      border-radius: 0 10px 10px 0;
+      font-weight: 800;
+      color: white;
+    }
+
+    /* Row coloring for categories */
+    .row1 { background-color: #b5c3c6; }
+    .row2 { background-color: #418f7f; }
+    .row3 { background-color: #92cec2; }
+    .row4 { background-color: #104a60; }
+    .row5 { background-color: #4b7b8f; }
+
+    /* Override the data row colours for the first column  */
+    .row1 td:first-child,
+    .row2 td:first-child,
+    .row3 td:first-child,
+    .row4 td:first-child,
+    .row5 td:first-child {
+      background-color: rgb(255, 255, 255);
+    }
+
+    /* Change colour of data cell if there's data inside */
+    td:nth-child(4):not(:empty),
+    td:nth-child(6):not(:empty),
+    td:nth-child(8):not(:empty) {
+      background-color: #e9edec;
+    }
+
+    /* Flex styling to justify space between contents */
+    td:nth-child(4) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Green-colored text in first data column*/
+    span {
+      color: #00b350;
+    }
+
+    /* Row gaps for spacing */
+    .gap td {
+      height: 12px;
+    }
+
+    .first-gap td {
+      height: 2px;
+    }
+
+    /* Horizontal line between groups */
+    .hr-line td:nth-child(1),
+    .hr-line td:nth-child(2) {
+      border-top: 3px solid;
+    }
+
+    /* Vertical line at the start of groups */
+    .vt-line {
+      border-left: 3px solid;
+    }
+
+    /* Group-specific border colors */
+    .gp1.hr-line td:nth-child(1),
+    .gp1.hr-line td:nth-child(2),
+    .vt-line.gp1 {
+      border-color: #e1e1e1;
+    }
+
+    .gp2.hr-line td:nth-child(1),
+    .gp2.hr-line td:nth-child(2),
+    .vt-line.gp2 {
+      border-color: #9fbedd;
+    }
+
+    .gp3.hr-line td:nth-child(1),
+    .gp3.hr-line td:nth-child(2),
+    .vt-line.gp3 {
+      border-color: #e0b28e;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <!-- Reference image section -->
+  <figure>
+    <img src="https://i.postimg.cc/WbSgVtvj/table2.jpg" alt="table reference image">
+    <figcaption class="caption">Reference Image</figcaption>
+  </figure>
+
+  <!-- Table section -->
+  <figure>
+    <div class="table-scroll">
+      <table>
+        <!-- Header row -->
+        <tr class="head">
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>2018</th>
+          <th></th>
+          <th>2017</th>
+          <th></th>
+          <th>2016</th>
+          <th></th>
+        </tr>
+
+        <!-- First gap -->
+        <tr class="gap first-gap"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+        <!-- Group 1 starts -->
+        <tr class="gap hr-line vt-line gp1"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+        <tr class="row1">
+          <td class="vt-line gp1"></td>
+          <td>XXXX</td>
+          <td></td>
+          <td>0 XXX <span>(+50)</span></td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+        </tr>
+
+        <!-- Group 2 starts -->
+        <tr class="gap"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="gap hr-line vt-line gp2"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+        <tr class="row2">
+          <td class="vt-line gp2"></td>
+          <td>XXXX</td>
+          <td></td>
+          <td>0 XXX <span>(+/-0)</span></td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+        </tr>
+
+        <!-- Extra row in group 2 -->
+        <tr class="gap vt-line gp2"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="gap vt-line gp2"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+        <tr class="row3">
+          <td class="vt-line gp2"></td>
+          <td>XXXX</td>
+          <td></td>
+          <td>0 XXX <span>(+5)</span></td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+        </tr>
+
+        <!-- Group 3 starts -->
+        <tr class="gap"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="gap hr-line vt-line gp3"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+        <tr class="row4">
+          <td class="vt-line gp3"></td>
+          <td>XXXX</td>
+          <td></td>
+          <td>0 XXX <span>(+0.08)</span></td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+        </tr>
+
+        <!-- Extra row in group 3 -->
+        <tr class="gap vt-line gp3"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="gap vt-line gp3"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+        <tr class="row5">
+          <td class="vt-line gp3"></td>
+          <td>XXXX</td>
+          <td></td>
+          <td>0 XXX <span>(+1)</span></td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+          <td>0 XXX</td>
+          <td></td>
+        </tr>
+
+        <!-- Final spacing -->
+        <tr class="gap"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+    </div>
+    <figcaption class="caption" style="margin-top: 30px;">Table</figcaption>
+  </figure>
+</body>
+</html>

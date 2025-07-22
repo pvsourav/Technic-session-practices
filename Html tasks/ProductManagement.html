@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <title>Product Management</title>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Open Sans";
+        background-color: #f1ebe5;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; 
+        padding: 30px; 
+    }
+
+    .main-heading {
+        font-size: 32px;
+        font-weight: 700;
+        color: #c19269;
+        margin-bottom: 100px;
+        text-align: center;
+    }
+   
+    .container {
+        max-width: 1000px;
+        display: flex;
+        align-items: stretch;
+        gap: 30px; 
+        width: 100%;
+    }
+
+    .main-section {
+        background: rgb(255, 255, 255);
+        border-radius: 30px;
+        padding: 30px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        max-height: 589px;
+    }
+
+    .display {
+        max-width: 407px;
+        min-width: 407px;
+    }
+
+    .section-header {
+        margin-bottom: 15px;
+    }
+
+    .title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #2d2d2d;
+        margin: 0;
+    }
+
+    .sub-title {
+        font-size: 14px;
+        color: #7a7a7a;
+        margin-top: 5px;
+        line-height: 1.5;
+    }
+
+    .section {
+        margin-top: 15px;
+    }
+
+    .section-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: #2d2d2d;
+        margin-bottom: 15px;
+    }
+
+    .fields-wrapper {
+        display: flex;
+        gap: 15px;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        flex: 1;
+    }
+
+    label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #5a5a5a;
+        margin-bottom: 8px;
+    }
+
+    input, select {
+        padding: 14px 15px;
+        border: 2px solid #f0f0f0;
+        border-radius: 12px;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        background: #fafafa;
+        font-family: "Open Sans", sans-serif;
+    }
+
+    input::placeholder {
+        font-size: 15px;
+        color: #b9b9b9;
+    }
+
+    input:focus, select:focus {
+        outline: none;
+        border: 2px solid #c4956c;
+        background-color: #ffffff;
+    }
+
+    select {
+        padding-right: 50px;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c4956c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 18px;
+    }
+
+    select option {
+        padding: 12px 15px;
+        background-color: #ffffff;
+        color: #2d2d2d;
+        font-size: 15px;
+        border: none;
+    }
+
+    select option:hover,
+    select option:focus {
+        background-color: #fff2e6;
+        color: #c4956c;
+    }
+
+    select option:checked {
+        background-color: #c4956c;
+        color: #ffffff;
+    }
+    
+    .status-option {
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .button-group{
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    .btn{
+        padding: 13px 28px;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-transform: none;
+    }
+
+    .lucide {
+        width: 18px;
+        stroke-width: 2px; 
+    }
+
+    .submit-btn {
+        background-color: #c19269;
+        color: white;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .clear-btn {
+        color: #c19269;
+        border: 1px solid #c19269;
+        background-color: #ffffff;
+    }
+
+    .clear-btn:hover {
+        background: #fff5ed;
+        transform: translateY(-1px); 
+    }
+
+    .info-section {
+        display: flex;
+        gap: 15px;
+    }
+
+    .info {
+        flex: 1;
+        background-color: #fff2e6;
+        border: 1px solid #c4956c;
+        color: #c4956c;
+        padding: 15px;
+        border-radius: 15px;
+        text-align: center;
+        margin: 15px 0;
+    }
+
+    .stat-number {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+        opacity: 0.9;
+    }
+
+    .filters {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .tab {
+        padding: 8px 15px;
+        border: 1px solid #cccccc;
+        border-radius: 15px;
+        background: white;
+        color: #7a7a7a;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .tab.active {
+        background-color: #c4956c;
+        border-color: #c4956c;
+        color: #ffffff;
+    }
+
+    .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fafafa;
+        color: #7a7a7a;
+        border-radius: 15px;
+        border: 2px dashed #e0e0e0;
+        flex: 1;
+        width: 100%;
+        min-height: 200px;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .empty-icon {
+        font-size: 48px;
+        margin-bottom: 15px;
+        opacity: 0.5;
+    }
+
+    .items-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        min-height: 200px;
+        max-height: 350px;
+    }
+
+    .items-container:not(:has(.empty-state)) {
+        padding-right: 8px;
+    }
+
+    .items-container::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .items-container::-webkit-scrollbar-track {
+        background: #f5f5f5;
+        border-radius: 3px;
+    }
+
+    .items-container::-webkit-scrollbar-thumb {
+        background: #c4956c;
+        border-radius: 3px;
+    }
+
+    .item-card {
+        background: #fafafa;
+        border: 1px solid #f0f0f0;
+        border-radius: 16px;
+        padding: 15px;
+        margin-bottom: 12px;
+        transition: all 0.2s ease;
+        border: 1px solid #e0e0e0;
+        flex-shrink: 0;
+    }
+
+    .item-card:hover {
+        background: white;
+        border-color: #c4956c;
+        transform: translateY(2px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .item-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2d2d2d;
+        flex: 1;
+    }
+
+    .item-id {
+        background: #c4956c;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .item-divider {
+        height: 1px;
+        background: #e0e0e0;
+        margin-bottom: 15px;
+    }
+
+    .item-details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .item-detail {
+        text-align: center;
+    }
+
+    .item-detail-label {
+        font-size: 12px;
+        color: #7a7a7a;
+        margin-bottom: 4px;
+    }
+
+    .item-detail-value {
+        font-size: 16px;
+        font-weight: 600;
+        color: #2d2d2d;
+    }
+
+    .price-highlight {
+        color: #c4956c;
+    }
+
+
+
+    @media (max-width: 767px) {
+      body {
+          padding: 20px;
+          min-height: 100vh;
+          align-items: flex-start;
+      }
+
+      .main-heading {
+          font-size: 24px;
+          margin-bottom: 20px;
+      }
+      
+      .container {
+          flex-direction: column;
+          gap: 20px;
+          width: 100%;
+          max-width: 100%;
+      }
+      
+      .main-section {
+          width: 100% !important;
+          max-width: 100% !important;
+          min-width: auto !important;
+          max-height: none !important;
+          height: auto !important;
+          margin: 0;
+          padding: 30px;
+      }
+      
+      input, select {
+          width: 100%;
+          min-width: 0;
+          box-sizing: border-box;
+      }
+      
+      .btn {
+          justify-content: center;
+          flex: 1;
+      }
+    }
+
+</style>
+</head>
+<body>
+  <h1 class="main-heading">Product Management System</h1>
+  
+  <div class="container">
+
+    <!-- form ---------------------->
+    <div class="main-section">
+      <div class="section-header">
+        <h1 class="title">Add Item</h1>
+        <p class="sub-title">Provide the details to add a new item</p>
+      </div>
+
+      <form id="itemForm">
+        <div class="section">
+          <div class="section-title">Item Information</div>
+          <div class="fields-wrapper">
+            <div class="input-group">
+              <label for="itemId">Item ID</label>
+              <input type="text" id="itemId" required placeholder="e.g. ITM001" />
+            </div>
+            <div class="input-group">
+              <label for="itemName">Item Name</label>
+              <input type="text" id="itemName" required placeholder="e.g. Laptop" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Pricing & Inventory</div>
+          <div class="fields-wrapper">
+            <div class="input-group">
+              <label for="price">Price ($)</label>
+              <input type="number" id="price" step="0.01" min="0" required placeholder="0.00" />
+            </div>
+            <div class="input-group">
+              <label for="quantity">Quantity</label>
+              <input type="number" id="quantity" min="0" required placeholder="0" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="stock">Stock Available</label>
+            <select id="stock" required>
+              <option value="" disabled selected>Select stock status</option>
+              <option value="in-stock">In Stock</option>
+              <option value="low-stock">Low Stock</option>
+              <option value="out-of-stock">Out of Stock</option>
+              <option value="unavailable">Unavailable</option>
+            </select>
+          </div>
+        </div>
+        <div class="button-group">
+          <button type="submit" class="btn submit-btn">Add Item<i data-lucide="box"></i></button>
+          <button type="button" class="btn clear-btn" onclick="clearAllItems()">Delete All<i data-lucide="trash-2"></i></button>
+        </div>
+      </form>
+    </div>
+
+    <!-- display ------------------->
+    <div class="main-section display">
+      <div class="section-header">
+        <h1 class="title">Products Overview</h1>
+        <p class="sub-title">Track your items and view filtered results.</p>
+      </div>
+      <div class="info-section">
+        <div class="info">
+          <div class="stat-number" id="totalItems">0</div>
+          <div class="stat-label">Total Items</div>
+        </div>
+        <div class="info">
+          <div class="stat-number" id="premiumItems">0</div>
+          <div class="stat-label">Premium ($500+)</div>
+        </div>
+      </div>
+      <div class="filters">
+        <div class="tab active" onclick="showExpensiveItems()">Premium</div>
+        <div class="tab" onclick="showAllItems()">All Items</div>
+      </div>
+      <div class="items-container" id="itemList">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    let itemsArray = [];
+    let currentFilter = 'expensive'; 
+
+    document.getElementById('itemForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      addItem();
+    });
+
+    function addItem() {
+      const itemId = document.getElementById('itemId').value.trim();
+      const itemName = document.getElementById('itemName').value.trim();
+      const price = parseFloat(document.getElementById('price').value);
+      const quantity = parseInt(document.getElementById('quantity').value);
+      const stockSelect = document.getElementById('stock');
+      const stockValue = stockSelect.value;
+      const stockText = stockSelect.options[stockSelect.selectedIndex].text;
+
+      const existingItem = itemsArray.find(item => item.itemId.toLowerCase() === itemId.toLowerCase());
+      if (existingItem) {
+        showMessage(`Item ID "${itemId}" already exists! Please use a unique ID.`, 'error');
+        return;
+      }
+
+      const newItem = { 
+        itemId: itemId, 
+        itemName: itemName, 
+        price: price, 
+        quantity: quantity, 
+        stock: stockText 
+      };
+
+      itemsArray.push(newItem);
+      
+      showMessage(`Item "${itemName}" added successfully!`, 'success');  
+      document.getElementById('itemForm').reset(); 
+      updateDisplay();  
+    }
+
+    function showMessage(message, type) {
+      if (type === 'success') {
+        alert('✅ ' + message);
+      } else {
+        alert('❌ ' + message);
+      }
+    }
+
+    function updateDisplay() {
+      if (currentFilter === 'all') {
+        showAllItems();
+      } else {
+        showExpensiveItems();
+      }
+    }
+
+    function showAllItems() {
+      currentFilter = 'all';
+      displayItems(itemsArray);
+      updateFilterTabs();
+    }
+
+    function updateFilterTabs() {
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      if (currentFilter === 'all') {
+        tabs[1].classList.add('active');
+      } else {
+        tabs[0].classList.add('active');
+      }
+    }
+
+    function showExpensiveItems() {
+      currentFilter = 'expensive';
+      const expensiveItems = itemsArray.filter(item => item.price > 500);
+      displayItems(expensiveItems);
+      updateFilterTabs();
+    }
+
+    function displayItems(items) {
+      const itemList = document.getElementById('itemList');
+      console.log('Displaying items:', items);
+      console.log('Items length:', items.length);
+
+      if (items.length === 0) {
+        const emptyMessage = currentFilter === 'expensive'
+          ? 'No premium items found'
+          : 'No items added yet';
+        const subMessage = currentFilter === 'expensive'
+          ? 'Add items with price > $500'
+          : 'Add your first item using the form';
+
+        itemList.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">📦</div>
+            <div>${emptyMessage}</div>
+            <div style="font-size: 12px; margin-top: 8px;">${subMessage}</div>
+          </div>
+        `;
+      
+        itemList.innerHTML = emptyHTML;
+
+      } else {
+        const itemsHTML = items.map(item => `
+          <div class="item-card">
+            <div class="item-header">
+              <div class="item-name">${item.itemName}</div>
+              <div class="item-id">${item.itemId}</div>
+            </div>
+            <div class="item-divider"></div>
+            <div class="item-details">
+              <div class="item-detail">
+                <div class="item-detail-label">Price</div>
+                <div class="item-detail-value price-highlight">$${item.price.toFixed(2)}</div>
+              </div>
+              <div class="item-detail">
+                <div class="item-detail-label">Quantity</div>
+                <div class="item-detail-value">${item.quantity}</div>
+              </div>
+              <div class="item-detail">
+                <div class="item-detail-label">Stock</div>
+                <div class="item-detail-value">${item.stock}</div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+        
+        itemList.innerHTML = itemsHTML;
+      }
+
+      updateStats();
+    }
+
+    function updateStats() {
+      const totalItems = itemsArray.length;
+      const expensiveCount = itemsArray.filter(item => item.price > 500).length;
+
+      document.getElementById('totalItems').textContent = totalItems;
+      document.getElementById('premiumItems').textContent = expensiveCount;
+    }
+
+    function clearAllItems() {
+      if (itemsArray.length === 0) {
+        showMessage('No items to clear!', 'error');
+      } else {
+        if (confirm('Are you sure you want to delete all items?')) {
+          itemsArray = [];
+          showMessage('All items deleted successfully!', 'success');
+          updateDisplay();
+        }
+      }
+    }
+
+    updateDisplay();
+    updateStats();
+    
+  </script>
+</body>
+</html>

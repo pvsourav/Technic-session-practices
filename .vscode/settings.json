@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "Java tasks"
+    ],
+    "java.project.referencedLibraries": [
+        "c:\\Users\\soura\\Downloads\\mysql-connector-j-9.3.0\\mysql-connector-j-9.3.0\\mysql-connector-j-9.3.0.jar"
+    ]
+}

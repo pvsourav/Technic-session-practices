@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Gothic+A1&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            right: 0;
+            min-height: 100vh;
+            min-width: 100%; 
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: clamp(15px, 4vw, 20px);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: white;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            font-weight: 500;
+            margin-bottom: clamp(10px, 2vw, 15px);
+            text-align: left;
+        }
+
+        .subtitle {
+            color: white;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            margin-bottom: clamp(40px, 8vw, 80px);
+            opacity: 0.95;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 10px; 
+            width: 100%;
+        }
+
+        .form-group label {
+            color: white;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-weight: 500;
+            text-align: left;
+            min-width: 137px;
+            margin-right: 25px;
+            text-wrap: nowrap;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: white;
+            border: none;
+            border-radius: 6px;
+            padding: clamp(12px, 2.5vw, 16px);
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            width: 100%;
+            flex: 1;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            transform: translateY(-1px);
+        }
+
+        .input-group {
+            gap: 25px;
+            display: flex;
+            width: 100%;
+        }
+
+        .input-group input {
+            flex: 1;
+        }
+
+        .phone-group {
+            display: flex;
+            gap: 25px;
+            flex: 1;
+        }
+
+        .phone-input {
+            text-align: center;
+            font-weight: 500;
+            flex: 1;
+            min-width: 0;
+        } 
+
+        .subject-container { 
+            display: flex;
+            width: 100%;
+        }
+
+        #subject {
+            flex: 1;
+            flex: 0 0 66.66%;
+        }
+
+        .message-textarea {
+            min-height: clamp(100px, 15vw, 120px);
+            resize: vertical;
+            font-family: inherit;
+            line-height: 1.5;
+        }
+
+        .verification-group {
+            justify-content: flex-start;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .captcha {
+            background: #ffffff;
+            border: 2px solid #d3d3d3;
+            border-radius: 4px;
+            padding: 8px 18px;
+            padding-left: 5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            max-width: 320px;
+            width: 100%;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .captcha input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            border: 2px solid #d3d3d3;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .captcha-text {
+            font-size: 14px;
+            color: #222;
+            font-family: Arial, sans-serif;
+            flex-grow: 1;
+        }
+
+        .captcha-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .captcha-icon {
+            width: 28px;
+            height: 28px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .captcha-icon img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .captcha-brand {
+            font-size: 10px;
+            color: #757575;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .captcha-links {
+            font-size: 8px;
+            color: #757575;
+            text-align: center;
+            line-height: 1;
+        }
+        
+        .divider {
+            height: 2px;
+            background: #ffffff;
+            margin: clamp(20px, 4vw, 30px) 0;
+            border-radius: 1px;
+        }
+
+        .submit-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 6px;
+            padding: 13px 30px;
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            font-family: inherit;
+            align-self: center;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .submit-btn:hover {
+            background: white;
+            color: #188fad;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        } 
+
+    </style>
+</head>
+<body>
+    <img src="https://i.postimg.cc/zBK6KVKG/bg-image.jpg" alt="Background" class="background-image">
+    
+    <div class="container">
+        <h1>Contact form</h1>
+        <p class="subtitle">Please fill in your information and we'll be sending your order in no time.</p>
+        
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <div class="input-group">
+                    <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
+                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" class="single-input" placeholder="e.g. hello@contact.net" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone *</label>
+                <div class="phone-group">
+                    <input type="tel" id="phone1" name="phone1" class="phone-input" placeholder="###" pattern="\d{3}" maxlength="3" required>
+                    <input type="tel" id="phone2" name="phone2" class="phone-input" placeholder="###" pattern="\d{3}" maxlength="3" required>
+                    <input type="tel" id="phone3" name="phone3" class="phone-input" placeholder="####" pattern="\d{4}" maxlength="4" required>
+                </div>
+                <input type="hidden" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Message Subject</label>
+                <div class="subject-container">
+                    <select id="subject" name="subject" required>
+                    <option value="" disabled selected>Select a subject</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="support">Support</option>
+                    <option value="feedback">Feedback</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" class="message-textarea" placeholder="Your message here..." required></textarea>
+            </div>
+
+            <div class="form-group verification-group">
+                <label for="verification">Verification *</label>
+                <div class="captcha">
+                    <input type="checkbox" id="verification" name="verification" required>
+                    <span class="captcha-text">I'm not a robot</span>
+                    <div class="captcha-logo">
+                        <div class="captcha-icon">
+                            <img src="https://i.postimg.cc/Cxdnfd5q/captcha-icon.png" alt="icon">
+                        </div>
+                        <div class="captcha-brand">captcha</div>
+                        <div class="captcha-links">Privacy - Terms</div>
+                    </div>
+                </div>
+                <input type="hidden" id="captcha" name="captcha">
+            </div>
+
+            <div class="divider"></div>
+
+            <button type="submit" class="submit-btn">Submit Form</button>
+        </form>
+    </div>
+
+<script>
+    const form = document.getElementById('contactForm');
+    const phoneInput1 = document.getElementById('phone1');
+    const phoneInput2 = document.getElementById('phone2');
+    const phoneInput3 = document.getElementById('phone3');
+    const combinedPhone = document.getElementById('phone');
+    const captchaCheckbox = document.getElementById('verification');
+    const captchaHidden = document.getElementById('captcha');
+
+    function setupPhoneInputs() {
+        phoneInput1.addEventListener('input', function(e) {
+            if (this.value.length === 3) {
+                phoneInput2.focus();
+            }
+        });
+
+        phoneInput2.addEventListener('input', function(e) {
+            if (this.value.length === 3) {
+                phoneInput3.focus();
+            }
+        });
+
+        phoneInput2.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && this.value.length === 0) {
+                phoneInput1.focus();
+            }
+        });
+
+        phoneInput3.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && this.value.length === 0) {
+                phoneInput2.focus();
+            }
+        });
+
+        [phoneInput1, phoneInput2, phoneInput3].forEach(input => {
+            input.addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        });
+    }
+
+    setupPhoneInputs();
+
+    captchaCheckbox.addEventListener('change', function () {
+        captchaHidden.value = this.checked ? "verified" : "";
+    });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!captchaCheckbox.checked) {
+            alert("Please verify you're not a robot.");
+            return;
+        }
+
+        if (phoneInput1.value.length !== 3 || phoneInput2.value.length !== 3 || phoneInput3.value.length !== 4) {
+            alert("Please enter a valid phone number.");
+            return;
+        }
+
+        const phone = `${phoneInput1.value}-${phoneInput2.value}-${phoneInput3.value}`;
+        combinedPhone.value = phone;
+
+        const data = {
+            firstname: document.getElementById('firstname').value.trim(),
+            lastname: document.getElementById('lastname').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phone: phone,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value.trim(),
+            captcha: captchaHidden.value
+        };
+
+        const message = `Full Name: ${data.firstname} ${data.lastname}
+
+        Email: ${data.email}
+        Phone: ${data.phone}
+        Subject: ${data.subject}
+        Message: ${data.message}
+        Security Status: ${data.captcha}`;
+
+        alert("Submitted Details:\n\n" + message);
+
+        location.reload();
+    });
+</script>
+
+</body>
+</html>

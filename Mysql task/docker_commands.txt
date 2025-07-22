@@ -1,0 +1,29 @@
+Step 1: Install Docker
+
+
+Step 2: Pull MySQL Docker Image
+
+💲docker pull mysql:latest
+
+    docker pull: This command is used to download a Docker image.
+
+    mysql/mysql-server: This specifies the name of the image you want to pull. 
+
+    :latest: This is the tag for most recent stable version.
+
+
+Step 3: Run MySQL Docker Container
+
+💲docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=your_password -e MYSQL_DATABASE=company -p 3306:3306 -d mysql:latest
+
+    docker run: This command creates and starts a new container from an image.
+
+    --name mysql-container: This assigns a recognizable name (mysql-container) to your container. 
+
+    -e MYSQL_ROOT_PASSWORD=your_mysql_password: definine the password for the root user. 
+
+    -p 3306:3306: This is for port mapping.
+
+    -d: This runs the container in detached mode (in the background). 
+
+    mysql/mysql-server:latest: This specifies the image to use for creating the container.
